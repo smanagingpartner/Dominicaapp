@@ -3,6 +3,7 @@ import json
 import requests
 import streamlit as st
 from streamlit_lottie import st_lottie
+from streamlit_lottie import st_lottie_spinner
 from PIL import Image
 
 st.set_page_config(page_title = 'My Webpage', page_icon = 'tada', layout = 'wide')
