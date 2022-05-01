@@ -1,120 +1,3 @@
-plotly
-scipy
-pandas
-Flask
-flask-cors
-pyforest
-  
- import pandas
- 
- FEATURE: Add support for isPaused property on lottie worker
-- FEATURE: Adds support for changing volume based on the audio layer data
-- FEATURE: add support for removeEventListener on worker
-- FEATURE: add support for updateDocumentData on worker
-- FEATURE: add text as font support on worker
-- FIX: avoid crash when script does not have src
-
-## V 5.9.2
-- FEATURE: add support for playsegments and blend mode on lottie worker
-- FIX: Fix ts typing for loadAnimation parameter
- 8  
-History.md
-@@ -1,3 +1,11 @@
-## V 5.9.3
-- FEATURE: Add support for isPaused property on lottie worker
-- FEATURE: Adds support for changing volume based on the audio layer data
-- FEATURE: add support for removeEventListener on worker
-- FEATURE: add support for updateDocumentData on worker
-- FEATURE: add text as font support on worker
-- FIX: avoid crash when script does not have src
-
-## V 5.9.2
-- FEATURE: add support for playsegments and blend mode on lottie worker
-- FIX: Fix ts typing for loadAnimation parameter
- BIN +5.45 KB (100%) 
-build/extension/bodymovin.zxp
-Binary file not shown.
-  145  
-build/player/lottie.js
-@@ -1711,6 +1711,7 @@
-    this.configAnimation = this.configAnimation.bind(this);
-    this.onSetupError = this.onSetupError.bind(this);
-    this.onSegmentComplete = this.onSegmentComplete.bind(this);
-    this.drawnFrameEvent = new BMEnterFrameEvent('drawnFrame', 0, 0, 0);
-  };
-
-  extendPrototype([BaseEvent], AnimationItem);
-@@ -2031,6 +2032,7 @@
-
-    if (this.isPaused === true) {
-      this.isPaused = false;
-      this.trigger('_pause');
-      this.audioController.resume();
-
-      if (this._idle) {
-@@ -2047,6 +2049,7 @@
-
-    if (this.isPaused === false) {
-      this.isPaused = true;
-      this.trigger('_play');
-      this._idle = true;
-      this.trigger('_idle');
-      this.audioController.pause();
-@@ -2407,14 +2410,28 @@
-    return isFrame ? this.totalFrames : this.totalFrames / this.frameRate;
-  };
-
-  AnimationItem.prototype.updateDocumentData = function (path, documentData, index) {
-    try {
-      var element = this.renderer.getElementByPath(path);
-      element.updateDocumentData(documentData, index);
-    } catch (error) {// TODO: decide how to handle catch case
-    }
-  };
-
-  AnimationItem.prototype.trigger = function (name) {
-    if (this._cbs && this._cbs[name]) {
-      switch (name) {
-        case 'enterFrame':
-        case 'drawnFrame':
-          this.triggerEvent(name, new BMEnterFrameEvent(name, this.currentFrame, this.totalFrames, this.frameModifier));
-          break;
-
-        case 'drawnFrame':
-          this.drawnFrameEvent.currentTime = this.currentFrame;
-          this.drawnFrameEvent.totalTime = this.totalFrames;
-          this.drawnFrameEvent.direction = this.frameModifier;
-          this.triggerEvent(name, this.drawnFrameEvent);
-          break;
-
-        case 'loopComplete':
-          this.triggerEvent(name, new BMCompleteLoopEvent(name, this.loop, this.playCount, this.frameMult));
-          break;
-@@ -5201,7 +5218,7 @@
-  lottie.useWebWorker = setWebWorker;
-  lottie.setIDPrefix = setPrefix;
-  lottie.__getFactory = getFactory;
-  lottie.version = '5.9.2';
-  lottie.version = '5.9.3';
-
-setuptools.setup(
-    name="streamlit-lottie",
-    version="0.0.3",
-    version="0.0.4",
-    author="Fanilo ANDRIANASOLO",
-    author_email="andfanilo@gmail.com",
-    description="A Streamlit custom component to load Lottie animations",
- 2  
-streamlit_lottie/frontend/package.json
-@@ -1,6 +1,6 @@
-{
-  "name": "streamlit_component_template",
-  "version": "0.0.3",
-  "version": "0.0.4",
-  "private": true,
-  "dependencies": {
-    "@types/node": "^12.0.0",
-
 from streamlit_lottie import lottie
 scikit-learn==0.22.1
 matplotlib==3.2.2
@@ -143,3 +26,29 @@ streamlit_lottie==0.0.2
 streamlit==1.3.0
 requests==2.24.0
 Pillow==8.4.0
+
+
+lottie.useWebWorker = setWebWorker;
+  lottie.setIDPrefix = setPrefix;
+  lottie.__getFactory = getFactory;
+  lottie.version = '5.9.2';
+  lottie.version = '5.9.3';
+
+setuptools.setup(
+    name="streamlit-lottie",
+    version="0.0.3",
+    version="0.0.4",
+    author="Fanilo ANDRIANASOLO",
+    author_email="andfanilo@gmail.com",
+    description="A Streamlit custom component to load Lottie animations",
+ 2  
+streamlit_lottie/frontend/package.json
+@@ -1,6 +1,6 @@
+{
+  "name": "streamlit_component_template",
+  "version": "0.0.3",
+  "version": "0.0.4",
+  "private": true,
+  "dependencies": {
+    "@types/node": "^12.0.0",
+
