@@ -1,4 +1,9 @@
-
+plotly
+scipy
+pandas
+Flask
+flask-cors
+pyforest
   
  import pandas
  
