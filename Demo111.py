@@ -1,11 +1,9 @@
-import json
-import pandas
 import requests
 import streamlit as st
 from streamlit_lottie import st_lottie
 from streamlit_lottie import st_lottie_spinner
 from PIL import Image
-
+import pandas
 st.set_page_config(page_title = 'My Webpage', page_icon = 'tada', layout = 'wide')
 
 def load_lottieurl(url): 
