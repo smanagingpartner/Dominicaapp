@@ -1,4 +1,0 @@
-[server]
-headless = true
-
-config port = 8501
