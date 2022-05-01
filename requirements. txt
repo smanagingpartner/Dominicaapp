@@ -27,28 +27,3 @@ streamlit==1.3.0
 requests==2.24.0
 Pillow==8.4.0
 
-
-lottie.useWebWorker = setWebWorker;
-  lottie.setIDPrefix = setPrefix;
-  lottie.__getFactory = getFactory;
-  lottie.version = '5.9.2';
-  lottie.version = '5.9.3';
-
-setuptools.setup(
-    name="streamlit-lottie",
-    version="0.0.3",
-    version="0.0.4",
-    author="Fanilo ANDRIANASOLO",
-    author_email="andfanilo@gmail.com",
-    description="A Streamlit custom component to load Lottie animations",
- 2  
-streamlit_lottie/frontend/package.json
-@@ -1,6 +1,6 @@
-{
-  "name": "streamlit_component_template",
-  "version": "0.0.3",
-  "version": "0.0.4",
-  "private": true,
-  "dependencies": {
-    "@types/node": "^12.0.0",
-
